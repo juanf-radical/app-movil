@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMovil">
+        <activity android:name=".Mapa"></activity>
         <activity android:name=".Home_Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Detalle_Solicitud">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name=".Olvido_Password">
             <intent-filter>
