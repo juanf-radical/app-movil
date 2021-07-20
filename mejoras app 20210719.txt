@@ -1,0 +1,5 @@
+- Activity con botón para llegar, agregar Activity con el perfil del proveedor imagen telefono, dirección, correo
+- Activity Home proveedor con las solicitudes
+- Activity detalle incluir los elementos en scroll view
+
+Botón registro -> Registro -> Home -> 
