@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMovil">
-        <activity android:name=".Detalle_Solicitud"></activity>
+        <activity android:name=".MensajesActivity"></activity>
+        <activity android:name=".MapActivity" />
+        <activity android:name=".Detalle_Solicitud" />
         <activity android:name=".Olvido_Password" />
         <activity android:name=".Solicitud" />
         <activity android:name=".Registro" />
