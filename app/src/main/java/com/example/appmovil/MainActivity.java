@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingIn = findViewById(R.id.buttonSingIn);
         buttonSingUp = findViewById(R.id.buttonSingUp);
         buttonForgetPassword = findViewById(R.id.buttonForgetPassword);
-        buttonSingUp.setOnClickListener(this);
+        buttonSingIn.setOnClickListener(this);
         buttonSingUp.setOnClickListener(this);
         buttonForgetPassword.setOnClickListener(this);
     }
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonSingIn:
-                Intent intent = new Intent(MainActivity.this,Detalle_Solicitud.class);
+                Intent intent = new Intent(MainActivity.this,Home_Admin.class);
                 startActivity(intent);
                 break;
             case R.id.buttonSingUp:
