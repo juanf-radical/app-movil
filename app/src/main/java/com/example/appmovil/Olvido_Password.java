@@ -2,13 +2,30 @@ package com.example.appmovil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-public class Olvido_Password extends AppCompatActivity {
+public class Olvido_Password extends AppCompatActivity implements View.OnClickListener {
+    private Button btRecuperarPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olvido_password);
+        Button btRecuperarPassword = findViewById(R.id.btRecuperarPassword);
+        btRecuperarPassword.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btRecuperarPassword:
+                Intent intent = new Intent(Olvido_Password.this,MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+
     }
 }
