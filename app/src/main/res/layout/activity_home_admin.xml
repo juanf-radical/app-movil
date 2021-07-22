@@ -16,12 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/buttonDetalleSolicitud"
+        android:layout_width="245dp"
+        android:layout_height="56dp"
+        android:text="Detalle de la solicitud"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="266dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="116dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHomeAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHomeAdmin">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

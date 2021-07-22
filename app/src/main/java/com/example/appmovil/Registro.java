@@ -23,7 +23,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btRegistro:
-                Intent intent = new Intent(Registro.this,MainActivity.class);
+                Intent intent = new Intent(Registro.this,Home_Admin.class);
                 startActivity(intent);
                 break;
         }
