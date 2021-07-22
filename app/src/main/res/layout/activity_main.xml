@@ -13,7 +13,8 @@
         android:layout_height="665dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="-17dp"
-        tools:layout_editor_absoluteY="-10dp">
+        tools:layout_editor_absoluteY="-10dp"
+        tools:ignore="MissingConstraints">
 
         <EditText
             android:id="@+id/editTextUser"
@@ -61,6 +62,16 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
             android:text="¿FORGOT PASSWORD?" />
+
+        <TextView
+            android:id="@+id/textViewMensaje"
+            android:layout_width="341dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="" />
 
     </LinearLayout>
 

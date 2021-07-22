@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,11 +21,14 @@
         android:id="@+id/buttonDetalleSolicitud"
         android:layout_width="245dp"
         android:layout_height="56dp"
+        android:layout_marginTop="64dp"
         android:text="Detalle de la solicitud"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="266dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSolicitudes" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSolicitudes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"

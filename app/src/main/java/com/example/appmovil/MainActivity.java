@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextUser;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonSingIn;
     private Button buttonSingUp;
     private Button buttonForgetPassword;
+    private TextView textViewMensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingIn.setOnClickListener(this);
         buttonSingUp.setOnClickListener(this);
         buttonForgetPassword.setOnClickListener(this);
+        textViewMensaje.findViewById(R.id.textViewMensaje);
     }
+    String usuario1 = "cliente123";
+    String password1 = "12345";
+    String usuario2 = "admin123";
+    String password2 = "123456";
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonSingIn:
-                Intent intent = new Intent(MainActivity.this,Home_Admin.class);
-                startActivity(intent);
+                String user = editTextUser.getText().toString();
+                String pass = editTextPassword.getText().toString();
+                if (usuario1.equals(user) && password1.equals(pass)) {
+                    Intent intent = new Intent(MainActivity.this, Solicitud.class);
+                    startActivity(intent);
+                }else{
+                    if (usuario2.equals(user) && password2.equals(pass)){
+                        Intent intent3 = new Intent(MainActivity.this, Home_Admin.class);
+                        startActivity(intent3);
+                    }else{
+                        textViewMensaje.setText("Usuario o Constraseña no validos");
+                }}
                 break;
             case R.id.buttonSingUp:
                 Intent intent1 = new Intent(MainActivity.this, Registro.class);
