@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonSingIn;
     private Button buttonSingUp;
     private Button buttonForgetPassword;
-    private TextView textViewMensaje;
+//    private TextView textViewMensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingIn.setOnClickListener(this);
         buttonSingUp.setOnClickListener(this);
         buttonForgetPassword.setOnClickListener(this);
-        textViewMensaje.findViewById(R.id.textViewMensaje);
+  //      textViewMensaje.findViewById(R.id.textViewMensaje);
     }
     String usuario1 = "cliente123";
     String password1 = "12345";
@@ -45,14 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (usuario1.equals(user) && password1.equals(pass)) {
                     Intent intent = new Intent(MainActivity.this, Solicitud.class);
                     startActivity(intent);
-                }else{
+                }else {
                     if (usuario2.equals(user) && password2.equals(pass)){
                         Intent intent3 = new Intent(MainActivity.this, Home_Admin.class);
                         startActivity(intent3);
                     }else{
-                        textViewMensaje.setText("Usuario o Constraseña no validos");
+  //                      textViewMensaje.setText("Usuario o Constraseña no validos");
                 }}
-                break;
             case R.id.buttonSingUp:
                 Intent intent1 = new Intent(MainActivity.this, Registro.class);
                 startActivity(intent1);
