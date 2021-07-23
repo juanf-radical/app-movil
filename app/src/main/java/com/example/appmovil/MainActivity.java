@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextUser;
@@ -48,7 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else if (usuario2.equals(user) && password2.equals(pass)) {
                         Intent intent3 = new Intent(MainActivity.this, Home_Admin.class);
                         startActivity(intent3);
-                }else { textViewMensaje.setText("Usuario o Constraseña no validos");
+                }else {
+                    //textViewMensaje.setText("Usuario o Constraseña no validos");
+                    Toast.makeText(this, "Usuario o Contraseña no validos", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.buttonSingUp:
