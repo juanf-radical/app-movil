@@ -50,7 +50,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         //String sexo = editTextTextSexo.getText().toString();
         //String fecha = editTextTextFechadeNacimiento.getText().toString();
         //String direccion = editTextTextDireccion.getText().toString();
-        //SharedPreferences preferencias = getSharedPreferences("datoscontato",Context.MODE_PRIVATE);
+        //SharedPreferences preferencias = getSharedPreferences("datoscontacto",Context.MODE_PRIVATE);
         //SharedPreferences.Editor editor = preferencias.edit();
         //editor.putString();
 }

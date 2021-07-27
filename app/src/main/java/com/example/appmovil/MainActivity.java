@@ -43,14 +43,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonSingIn:
                 String user = editTextUser.getText().toString();
                 String pass = editTextPassword.getText().toString();
-                if (usuario1.equals(user) && password1.equals(pass)) {
+                if (user.length()==0) {
+                    editTextUser.setError("este campo no puede estar vacio");
+                }
+                else if (pass.length()==0){
+                    editTextPassword.setError("este campo no puede estar vacio");
+                }
+                    else if (usuario1.equals(user) && password1.equals(pass)) {
                     Intent intent = new Intent(MainActivity.this, Solicitud.class);
                     startActivity(intent);
-                }else if (usuario2.equals(user) && password2.equals(pass)) {
+                }   else if (usuario2.equals(user) && password2.equals(pass)) {
                         Intent intent3 = new Intent(MainActivity.this, Home_Admin.class);
                         startActivity(intent3);
-                }else {
-                    //textViewMensaje.setText("Usuario o Constraseña no validos");
+                }   else {
                     Toast.makeText(this, "Usuario o Contraseña no validos", Toast.LENGTH_LONG).show();
                 }
                 break;
