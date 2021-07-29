@@ -1,15 +1,17 @@
 package com.example.appmovil;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener {
     private Button btRegistro;
@@ -36,11 +38,55 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btRegistro:
-                Intent intent = new Intent(Registro.this,Home_Admin.class);
-                startActivity(intent);
+              validarRegistro();
                 break;
         }
 
+    }
+    public void validarRegistro(){
+        if (camposVacios()==true && validarEmail()==true) {
+            Intent intent = new Intent(Registro.this,Home_Admin.class);
+            startActivity(intent);
+        } else Toast.makeText(this, "revisar campo incorrecto", Toast.LENGTH_LONG).show();
+    }
+    public boolean camposVacios() {
+        String usuario = editTextTextRusuario.getText().toString();
+        String password = editTextTextRpassword.getText().toString();
+        String reppass = editTextTextRepPass.getText().toString();
+        String nombre = editTextTextNombre.getText().toString();
+        String sexo = editTextTextSexo.getText().toString();
+        String fechanacimiento = editTextTextFechadeNacimiento.getText().toString();
+        String direccion = editTextTextDireccion.getText().toString();
+
+        if (usuario.isEmpty()==true){
+            editTextTextRusuario.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (password.isEmpty()==true){
+            editTextTextRpassword.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (reppass.isEmpty()==true){
+            editTextTextRepPass.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (nombre.isEmpty()==true){
+            editTextTextNombre.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (sexo.isEmpty()==true){
+            editTextTextSexo.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (fechanacimiento.isEmpty()==true){
+            editTextTextFechadeNacimiento.setError("Este campo no puede ir vacio");
+            return false;
+        } else if (direccion.isEmpty()==true){
+            editTextTextDireccion.setError("Este campo no puede ir vacio");
+            return false;
+        } return true;
+    }
+
+       private boolean validarEmail() {
+            String email = editTextTextRusuario.getText().toString();
+            Pattern pattern = Patterns.EMAIL_ADDRESS;
+            return pattern.matcher(email).matches();
+        }
     }
     //public void grabar (View v){
         //String usuario = editTextTextRusuario.getText().toString();
@@ -53,4 +99,3 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         //SharedPreferences preferencias = getSharedPreferences("datoscontacto",Context.MODE_PRIVATE);
         //SharedPreferences.Editor editor = preferencias.edit();
         //editor.putString();
-}
