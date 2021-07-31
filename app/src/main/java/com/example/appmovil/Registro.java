@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener {
@@ -23,31 +22,31 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        Button btRegistro = findViewById(R.id.btRegistro);
-        EditText editTextTextRusuario = findViewById(R.id.editTextTextRusuario);
-        EditText editTextTextRpassword = findViewById(R.id.editTextTextRpassword);
-        EditText editTextTextRepPass = findViewById(R.id.editTextTextRepPass);
-        EditText editTextTextNombre = findViewById(R.id.editTextTextNombre);
-        EditText editTextTextSexo = findViewById(R.id.editTextTextSexo);
-        EditText editTextTextFechadeNacimiento = findViewById(R.id.editTextTextFechadeNacimiento);
-        EditText editTextTextDireccion = findViewById(R.id.editTextTextDireccion);
+        btRegistro = findViewById(R.id.btRegistro);
+        editTextTextRusuario = findViewById(R.id.editTextTextRusuario);
+        editTextTextRpassword = findViewById(R.id.editTextTextRpassword);
+        editTextTextRepPass = findViewById(R.id.editTextTextRepPass);
+        editTextTextNombre = findViewById(R.id.editTextTextNombre);
+        editTextTextSexo = findViewById(R.id.editTextTextSexo);
+        editTextTextFechadeNacimiento = findViewById(R.id.editTextTextFechadeNacimiento);
+        editTextTextDireccion = findViewById(R.id.editTextTextDireccion);
         btRegistro.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btRegistro:
-              validarRegistro();
-                break;
+        if (v.getId() == R.id.btRegistro) {
+            validRegister();
         }
 
     }
-    public void validarRegistro(){
-        if (camposVacios()==true && validarEmail()==true) {
+    public void validRegister(){
+        if (!(!camposVacios() || !validarEmail())) {
             Intent intent = new Intent(Registro.this,Home_Admin.class);
             startActivity(intent);
-        } else Toast.makeText(this, "revisar campo incorrecto", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "revisar campo incorrecto", Toast.LENGTH_LONG).show();
+        }
     }
     public boolean camposVacios() {
         String usuario = editTextTextRusuario.getText().toString();
@@ -58,31 +57,31 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         String fechanacimiento = editTextTextFechadeNacimiento.getText().toString();
         String direccion = editTextTextDireccion.getText().toString();
 
-        if (usuario.isEmpty()==true){
+        if (usuario.isEmpty()){
             editTextTextRusuario.setError("Este campo no puede ir vacio");
             return false;
-        } else if (password.isEmpty()==true){
+        } else if (password.isEmpty()){
             editTextTextRpassword.setError("Este campo no puede ir vacio");
             return false;
-        } else if (reppass.isEmpty()==true){
+        } else if (reppass.isEmpty()){
             editTextTextRepPass.setError("Este campo no puede ir vacio");
             return false;
-        } else if (nombre.isEmpty()==true){
+        } else if (nombre.isEmpty()){
             editTextTextNombre.setError("Este campo no puede ir vacio");
             return false;
-        } else if (sexo.isEmpty()==true){
+        } else if (sexo.isEmpty()){
             editTextTextSexo.setError("Este campo no puede ir vacio");
             return false;
-        } else if (fechanacimiento.isEmpty()==true){
+        } else if (fechanacimiento.isEmpty()){
             editTextTextFechadeNacimiento.setError("Este campo no puede ir vacio");
             return false;
-        } else if (direccion.isEmpty()==true){
+        } else if (direccion.isEmpty()){
             editTextTextDireccion.setError("Este campo no puede ir vacio");
             return false;
         } return true;
     }
 
-       private boolean validarEmail() {
+    private boolean validarEmail() {
             String email = editTextTextRusuario.getText().toString();
             Pattern pattern = Patterns.EMAIL_ADDRESS;
             return pattern.matcher(email).matches();
