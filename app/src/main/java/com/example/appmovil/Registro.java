@@ -104,9 +104,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Usuario creado", Toast.LENGTH_LONG).show();
-                            /*userID = fAuth.getCurrentUser().getUid();
+                            userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String,Object> user = new HashMap<>();
+                            user.put("editTextTextRusuario",usuario);
+                            user.put("editTextTextRpassword",password);
                             user.put("editTextTextNombre",nombre);
                             user.put("editTextTextSexo",sexo);
                             user.put("editTextTextFechadeNacimiento",fechanacimiento);
@@ -117,7 +119,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                                     Log.d(TAG,"Success: user profile is crated for"+userID);
 
                                 }
-                            });*/
+                            });
                             startActivity(new Intent(Registro.this,Home_Admin.class));
 
                         }else{
