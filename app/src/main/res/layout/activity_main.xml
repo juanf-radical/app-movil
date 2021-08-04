@@ -31,6 +31,7 @@
             android:ems="10"
             android:hint="Usuario (E-Mail)"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             android:text="" />
 
         <EditText
@@ -41,6 +42,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             android:text="" />
 
         <Button

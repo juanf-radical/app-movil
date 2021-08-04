@@ -9,5 +9,6 @@
     <item
         android:id="@+id/item2"
         android:title="SingOut"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        android:onClick="logout"/>
 </menu>

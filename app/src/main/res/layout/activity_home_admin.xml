@@ -31,12 +31,23 @@
         android:id="@+id/recyclerViewSolicitudes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="260dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHomeAdmin">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/buttonLogOut"
+        android:layout_width="245dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="80dp"
+        android:text="LogOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewSolicitudes"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSolicitudes"
+        android:onClick="logout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextUser;
     private EditText editTextPassword;
@@ -22,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonForgetPassword;
     private TextView textViewMensaje;
     private Toolbar ToolBar;
+    FirebaseAuth fAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,69 +39,85 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingIn = findViewById(R.id.buttonSingIn);
         buttonSingUp = findViewById(R.id.buttonSingUp);
         buttonForgetPassword = findViewById(R.id.buttonForgetPassword);
-        buttonSingIn.setOnClickListener(this);
-        buttonSingUp.setOnClickListener(this);
-        buttonForgetPassword.setOnClickListener(this);
         textViewMensaje = findViewById(R.id.textViewMensaje);
         Toolbar ToolBar = findViewById(R.id.ToolBar);
         setSupportActionBar(ToolBar);
+        fAuth = FirebaseAuth.getInstance();
+
+        buttonSingIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String user = editTextUser.getText().toString().trim();
+                String pass = editTextPassword.getText().toString().trim();
+                if (user.length()==0) {
+                    editTextUser.setError("este campo no puede estar vacio");
+                    return;
+                }
+                if (pass.length()==0){
+                    editTextPassword.setError("este campo no puede estar vacio");
+                    return;
+                }
+
+                fAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Login OK", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this,Home_Admin.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+            }
+        });
+        buttonSingUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Registro.class);
+                startActivity(intent);
+            }
+        });
+
+
+        if(fAuth.getCurrentUser()!=null){
+            Intent intent = new Intent(MainActivity.this,Home_Admin.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
+    //    getMenuInflater().inflate(R.menu.menu,menu);
+    //    return super.onCreateOptionsMenu(menu);
+    //}
 
-    @Override
+
+    /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.item1:
-                return true;
+               return true;
 
             case R.id.item2:
                 return true;
             default: return super.onOptionsItemSelected(item);
         }
 
-    }
-
-    String usuario1 = "cliente123";
-    String password1 = "12345";
-    String usuario2 = "admin123";
-    String password2 = "123456";
+    }*/
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.buttonSingIn:
-                String user = editTextUser.getText().toString();
-                String pass = editTextPassword.getText().toString();
-                if (user.length()==0) {
-                    editTextUser.setError("este campo no puede estar vacio");
-                }
-                else if (pass.length()==0){
-                    editTextPassword.setError("este campo no puede estar vacio");
-                }
-                    else if (usuario1.equals(user) && password1.equals(pass)) {
-                    Intent intent = new Intent(MainActivity.this, Solicitud.class);
-                    startActivity(intent);
-                }   else if (usuario2.equals(user) && password2.equals(pass)) {
-                        Intent intent3 = new Intent(MainActivity.this, Home_Admin.class);
-                        startActivity(intent3);
-                }   else {
-                    Toast.makeText(this, "Usuario o Contraseña no validos", Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.buttonSingUp:
-                Intent intent1 = new Intent(MainActivity.this, Registro.class);
-                startActivity(intent1);
-                break;
-            case R.id.buttonForgetPassword:
-                Intent intent2 = new Intent(MainActivity.this, Olvido_Password.class);
-                startActivity(intent2);
-                break;
-        }
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

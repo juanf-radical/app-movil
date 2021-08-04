@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Home_Admin extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView solicitudes;
     private Button detalleSolicitud;
+    private Button LogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +23,11 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
 
         solicitudes = findViewById(R.id.recyclerViewSolicitudes);
         detalleSolicitud = findViewById(R.id.buttonDetalleSolicitud);
+        LogOut = findViewById(R.id.buttonLogOut);
         detalleSolicitud.setOnClickListener(this);
         solicitudes.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -37,5 +42,11 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
                 break;
         }
 
+    }
+
+    public void logout(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }
