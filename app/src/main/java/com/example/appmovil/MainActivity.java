@@ -82,6 +82,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        buttonForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Solicitud.class);
+                startActivity(intent);
+            }
+        });
+
 
         if(fAuth.getCurrentUser()!=null){
             Intent intent = new Intent(MainActivity.this,Home_Admin.class);
