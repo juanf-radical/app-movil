@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonSingUp;
     private Button buttonForgetPassword;
     private TextView textViewMensaje;
-    private Toolbar ToolBar;
+    private Toolbar toolBar;
     FirebaseAuth fAuth;
 
 
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingUp = findViewById(R.id.buttonSingUp);
         buttonForgetPassword = findViewById(R.id.buttonForgetPassword);
         textViewMensaje = findViewById(R.id.textViewMensaje);
-        Toolbar ToolBar = findViewById(R.id.ToolBar);
-        setSupportActionBar(ToolBar);
+        toolBar = findViewById(R.id.ToolBar);
+        setSupportActionBar(toolBar);
         fAuth = FirebaseAuth.getInstance();
 
         buttonSingIn.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +105,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                return true;
 
             case R.id.item2:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
                 return true;
             default: return super.onOptionsItemSelected(item);
-        }
+        }// en el item se crea el logout
 
     }*/
 
