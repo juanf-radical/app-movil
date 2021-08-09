@@ -31,6 +31,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
+    public static final String Rol = "user";
 
 
     @Override
@@ -66,6 +67,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 String sexo = editTextTextSexo.getText().toString().trim();
                 String fechanacimiento = editTextTextFechadeNacimiento.getText().toString().trim();
                 String direccion = editTextTextDireccion.getText().toString().trim();
+                String rol = Rol;
+
                 Pattern pattern = Patterns.EMAIL_ADDRESS;
 
                 /*if (pattern.matcher(usuario).matches()){
@@ -113,6 +116,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                             user.put("editTextTextSexo",sexo);
                             user.put("editTextTextFechadeNacimiento",fechanacimiento);
                             user.put("editTextTextDireccion",direccion);
+                            user.put("Rol",rol);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

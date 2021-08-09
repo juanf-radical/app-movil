@@ -42,6 +42,7 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
         solicitudes.setLayoutManager(new LinearLayoutManager(this));
         adapter =new Adapter(this,items);
         solicitudes.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         detalleSolicitud = findViewById(R.id.buttonDetalleSolicitud);
         LogOut = findViewById(R.id.buttonLogOut);
         detalleSolicitud.setOnClickListener(this);

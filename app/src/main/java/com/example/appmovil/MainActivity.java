@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextUser;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewMensaje;
     private Toolbar toolBar;
     FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
 
 
     @Override
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolBar = findViewById(R.id.ToolBar);
         setSupportActionBar(toolBar);
         fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         buttonSingIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Login OK", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this,Home_Admin.class);
-                            startActivity(intent);
+                            checkIfAdmin(fAuth.getCurrentUser().getUid());
+
                         }else{
                             Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -92,11 +99,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         if(fAuth.getCurrentUser()!=null){
-            Intent intent = new Intent(MainActivity.this,Home_Admin.class);
-            startActivity(intent);
+            checkIfAdmin(fAuth.getCurrentUser().getUid());
             finish();
         }
 
+    }
+
+    private void checkIfAdmin(String uid) {
+        DocumentReference df = fStore.collection("users").document(uid);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG", "onSuccess:"+documentSnapshot.getData());
+
+                if(documentSnapshot.getString("Rol")!= null){
+                    startActivity(new Intent(getApplicationContext(),Solicitud.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(getApplicationContext(),Home_Admin.class));
+
+                }
+
+            }
+        });
     }
 
     //@Override
