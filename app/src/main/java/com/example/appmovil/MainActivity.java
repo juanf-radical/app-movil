@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Toolbar toolBar;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    String userId;
 
 
     @Override
@@ -112,11 +113,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Log.d("TAG", "onSuccess:"+documentSnapshot.getData());
 
-                if(documentSnapshot.getString("Rol")!= null){
+                if(documentSnapshot.getData().get("Rol").toString().trim()=="user"){
                     startActivity(new Intent(getApplicationContext(),Solicitud.class));
                     finish();
                 }else{
-                    startActivity(new Intent(getApplicationContext(),Home_Admin.class));
+                    startActivity(new Intent(getApplicationContext(),Solicitud.class));
 
                 }
 
