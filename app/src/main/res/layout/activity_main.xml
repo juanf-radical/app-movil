@@ -20,7 +20,7 @@
             android:id="@+id/editTextUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="Usuario (E-Mail)"
             android:inputType="textPersonName"
@@ -72,6 +72,16 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:text="" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/signInButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginLeft="90dp"
+            ></com.google.android.gms.common.SignInButton>
 
     </LinearLayout>
 

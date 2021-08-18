@@ -8,35 +8,45 @@
     android:padding="40dp"
     tools:context=".Home_Admin">
 
-    <TextView
-        android:id="@+id/textViewHomeAdmin"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Listado de Solicitudes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonDetalleSolicitud"
-        android:layout_width="245dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="64dp"
-        android:text="Detalle de la solicitud"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSolicitudes" />
+        <TextView
+            android:id="@+id/textViewHomeAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listado de Solicitudes" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSolicitudes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHomeAdmin">
+        <TextView
+            android:id="@+id/nombreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            tools:ignore="MissingConstraints" />
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSolicitudes"
+            android:layout_width="match_parent"
+            android:layout_height="182dp"
+            android:layout_marginTop="50dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/buttonDetalleSolicitud"
+            android:layout_width="245dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="40dp"
+            android:text="Detalle de la solicitud" />
+
+        <Button
+            android:id="@+id/buttonCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesion" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
