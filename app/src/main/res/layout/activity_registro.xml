@@ -32,7 +32,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Usuario (E-Mail)"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:text="" />
 
             <EditText
@@ -42,7 +42,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Contraseña"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:text="" />
 
             <EditText
@@ -52,7 +52,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Repita contraseña"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:text="" />
 
             <EditText
@@ -82,7 +82,7 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Fecha de nacimiento"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:text="" />
 
             <EditText

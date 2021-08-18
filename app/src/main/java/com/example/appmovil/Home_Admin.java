@@ -2,7 +2,9 @@ package com.example.appmovil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.FragmentActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appmovil.Adapter.Clientes;
-import com.example.appmovil.Adapter.ClientesAdaptador;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,6 +31,10 @@ import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -39,15 +43,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Home_Admin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    /*
+
     private RecyclerView solicitudes;
     private Button detalleSolicitud;
-     */
-
-    RecyclerView recyclerCliente;
-    ClientesAdaptador clientesAdaptador;
-
-    LinearLayout clienteLinearLayout;
 
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -59,20 +57,33 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
 
     private Button buttonCerrarSesion;
 
+    private Button LogOut;
+    Adapter adapter;
+    ArrayList<String> items;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_admin);
 
-        /*
+        items= new ArrayList<>();
+        items.add("First CardView Item");
+        items.add("Second CardView Item");
+        items.add("Third CardView Item");
+        items.add("Fourth CardView Item");
+        items.add("Fifth CardView Item");
+        items.add("Sixth CardView Item");
+
         solicitudes = findViewById(R.id.recyclerViewSolicitudes);
+        solicitudes.setLayoutManager(new LinearLayoutManager(this));
+        adapter =new Adapter(this,items);
+        solicitudes.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         detalleSolicitud = findViewById(R.id.buttonDetalleSolicitud);
+        LogOut = findViewById(R.id.buttonLogOut);
         detalleSolicitud.setOnClickListener(this);
         solicitudes.setOnClickListener(this);
-
-         */
-        inicializarElementos();
-
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -89,7 +100,7 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
         buttonCerrarSesion = findViewById(R.id.buttonCerrarSesion);
         buttonCerrarSesion.setOnClickListener(this);
     }
-
+/*
     private void inicializarElementos() {
         recyclerCliente = findViewById(R.id.recyclerViewSolicitudes);
         recyclerCliente.setLayoutManager(new LinearLayoutManager(this));
@@ -106,7 +117,7 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
 
 //        clienteLinearLayout = findViewById(R.id.clienteLL);
 //        clienteLinearLayout.setOnClickListener(this);
-    }
+    }*/
 
     @Override
     protected void onStart() {
@@ -157,6 +168,7 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
         startActivity(intent);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -205,5 +217,11 @@ public class Home_Admin extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void logout(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

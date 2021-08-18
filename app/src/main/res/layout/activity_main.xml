@@ -16,6 +16,13 @@
         tools:layout_editor_absoluteY="-10dp"
         tools:ignore="MissingConstraints">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/ToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/holo_orange_light"/>
+
+
         <EditText
             android:id="@+id/editTextUser"
             android:layout_width="match_parent"
@@ -24,6 +31,7 @@
             android:ems="10"
             android:hint="Usuario (E-Mail)"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             android:text="" />
 
         <EditText
@@ -34,6 +42,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             android:text="" />
 
         <Button

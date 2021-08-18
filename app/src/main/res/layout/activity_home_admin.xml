@@ -5,48 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
     tools:context=".Home_Admin">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSolicitudes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDetalleSolicitud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13999999">
 
-        <TextView
-            android:id="@+id/textViewHomeAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Listado de Solicitudes" />
+    </androidx.recyclerview.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/nombreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/buttonDetalleSolicitud"
+        android:layout_width="245dp"
+        android:layout_height="56dp"
+        android:text="Detalle de la solicitud"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogOut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSolicitudes"
-            android:layout_width="match_parent"
-            android:layout_height="182dp"
-            android:layout_marginTop="50dp">
+    <Button
+        android:id="@+id/buttonLogOut"
+        android:layout_width="245dp"
+        android:layout_height="56dp"
+        android:onClick="logout"
+        android:text="LogOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/nombreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/buttonDetalleSolicitud"
-            android:layout_width="245dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="40dp"
-            android:text="Detalle de la solicitud" />
+    <Button
+        android:id="@+id/buttonCerrarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesion" />
 
-        <Button
-            android:id="@+id/buttonCerrarSesion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cerrar Sesion" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

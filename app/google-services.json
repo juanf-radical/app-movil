@@ -1,33 +1,55 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "326793584350",
     "project_id": "app-movil-63892",
     "storage_bucket": "app-movil-63892.appspot.com"
+=======
+    "project_number": "514143112730",
+    "project_id": "app-movil-2d6c9",
+    "storage_bucket": "app-movil-2d6c9.appspot.com"
+>>>>>>> 50a5f4a9214239dc41fa2076791ee5c84c9e7044
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:326793584350:android:494ea200481c2770862c4f",
+=======
+        "mobilesdk_app_id": "1:514143112730:android:0848043e8843fe9c818ba3",
+>>>>>>> 50a5f4a9214239dc41fa2076791ee5c84c9e7044
         "android_client_info": {
           "package_name": "com.example.appmovil"
         }
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
           "client_id": "326793584350-ju39vq0hiv8evaprf3dda2th56rf23gl.apps.googleusercontent.com",
+=======
+          "client_id": "514143112730-632d9qv028gslartkalca9n3jj0g2idp.apps.googleusercontent.com",
+>>>>>>> 50a5f4a9214239dc41fa2076791ee5c84c9e7044
           "client_type": 3
         }
       ],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyDItERnc1iZ01q3z6yBflMxRbkfz5eVAnk"
+=======
+          "current_key": "AIzaSyAj-J7ALRt4i6MosMbMZN1R7nCVey_9_gg"
+>>>>>>> 50a5f4a9214239dc41fa2076791ee5c84c9e7044
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
+<<<<<<< HEAD
               "client_id": "326793584350-ju39vq0hiv8evaprf3dda2th56rf23gl.apps.googleusercontent.com",
+=======
+              "client_id": "514143112730-632d9qv028gslartkalca9n3jj0g2idp.apps.googleusercontent.com",
+>>>>>>> 50a5f4a9214239dc41fa2076791ee5c84c9e7044
               "client_type": 3
             }
           ]

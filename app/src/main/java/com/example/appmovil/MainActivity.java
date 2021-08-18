@@ -2,16 +2,25 @@ package com.example.appmovil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.FragmentActivity;
+
+import androidx.appcompat.widget.Toolbar;
+
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.Menu;
+import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -33,6 +42,16 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int RC_SIGN_IN = 00;
     private EditText editTextUser;
@@ -41,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonSingUp;
     private Button buttonForgetPassword;
     private TextView textViewMensaje;
+    private Toolbar toolBar;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userId;
+
 
 //    private GoogleApiClient googleApiClient;
     private GoogleSignInClient mGoogleSignInClient;
@@ -55,41 +79,117 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSingIn = findViewById(R.id.buttonSingIn);
         buttonSingUp = findViewById(R.id.buttonSingUp);
         buttonForgetPassword = findViewById(R.id.buttonForgetPassword);
-        buttonSingIn.setOnClickListener(this);
-        buttonSingUp.setOnClickListener(this);
-        buttonForgetPassword.setOnClickListener(this);
         textViewMensaje = findViewById(R.id.textViewMensaje);
-
- //       GoogleSingInOptions gso = new GoogleSingnInOptions.Builder(GoogleSignInOptions.DEFAULT_SING_IN).requestEmail().build();
- //       googleApiClient = new GoogleApiClient.Builder(this).enableAutoManager(this,this).addApi(Auth.GOOGLE_SIGN_IN,gso).build();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-/*
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-*/
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         signInButton = (SignInButton) findViewById(R.id.signInButton);
         signInButton.setOnClickListener(this);
-/*
-        signInButton.setOnClickListener(new View.OnClickListener() {
+
+        toolBar = findViewById(R.id.ToolBar);
+        setSupportActionBar(toolBar);
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        buttonSingIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent,RC_SIGN_IN);
+
+                String user = editTextUser.getText().toString().trim();
+                String pass = editTextPassword.getText().toString().trim();
+                if (user.length()==0) {
+                    editTextUser.setError("este campo no puede estar vacio");
+                    return;
+                }
+                if (pass.length()==0){
+                    editTextPassword.setError("este campo no puede estar vacio");
+                    return;
+                }
+
+                fAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Login OK", Toast.LENGTH_LONG).show();
+                            checkIfAdmin(fAuth.getCurrentUser().getUid());
+
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
             }
         });
-        */
+        buttonSingUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Registro.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Solicitud.class);
+                startActivity(intent);
+            }
+        });
+
+
+        if(fAuth.getCurrentUser()!=null){
+            checkIfAdmin(fAuth.getCurrentUser().getUid());
+            finish();
+        }
+
     }
-    String usuario1 = "cliente123";
-    String password1 = "12345";
-    String usuario2 = "admin123";
-    String password2 = "123456";
+
+    private void checkIfAdmin(String uid) {
+        DocumentReference df = fStore.collection("users").document(uid);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG", "onSuccess:"+documentSnapshot.getData());
+
+                if(documentSnapshot.getData().get("Rol").toString().trim()=="user"){
+                    startActivity(new Intent(getApplicationContext(),Solicitud.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(getApplicationContext(),Solicitud.class));
+
+                }
+
+            }
+        });
+    }
+
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
+    //    getMenuInflater().inflate(R.menu.menu,menu);
+    //    return super.onCreateOptionsMenu(menu);
+    //}
+
+
+    /*@Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+               return true;
+
+            case R.id.item2:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }// en el item se crea el logout
+
+    }*/
 
     /*
     @Override
@@ -104,8 +204,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()){
-            case R.id.buttonSingIn:
+/*            case R.id.buttonSingIn:
                 String user = editTextUser.getText().toString();
                 String pass = editTextPassword.getText().toString();
                 if (usuario1.equals(user) && password1.equals(pass)) {
@@ -127,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent2 = new Intent(MainActivity.this, Olvido_Password.class);
                 startActivity(intent2);
                 break;
-
+*/
             case R.id.signInButton:
                 signIn();
         //        Intent intent4 = Auth.GoogleSignInApi.getSignInIntent(mGoogleSignInClient);
@@ -135,6 +236,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
 
     }
 
