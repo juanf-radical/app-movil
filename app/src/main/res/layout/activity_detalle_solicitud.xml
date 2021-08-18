@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="40dp"
     tools:context=".Detalle_Solicitud">
 
@@ -21,17 +21,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
         android:text="Nombre y Apellido"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSexo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSolDetalle" />
 
     <TextView
-        android:id="@+id/textViewSolSexo"
+        android:id="@+id/textViewSexo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Sexo"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSolCorreo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,46 +45,28 @@
         android:id="@+id/textViewSolCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSolFechaNac"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolSexo" />
-
-    <TextView
-        android:id="@+id/textViewSolIdentificacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Identificacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolCorreo" />
-
-    <TextView
-        android:id="@+id/textViewSolNomNegocio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nombre del negocio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolIdentificacion" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSexo" />
 
     <TextView
         android:id="@+id/textViewSolFechaNac"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Fecha de nacimiento"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDetalledeCarga"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolNomNegocio" />
-<!--
+        app:layout_constraintTop_toBottomOf="@+id/textViewSolCorreo" />
+    <!--
     <TextView
         android:id="@+id/textViewSolDireccion"
         android:layout_width="match_parent"
@@ -92,39 +78,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSolFechaNac" />
 -->
+
+    <TextView
+        android:id="@+id/textViewDetalledeCarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Detalle de Carga"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSolFechaNac" />
+
     <Button
-        android:id="@+id/buttonSolDireccion"
+        android:id="@+id/btListadoSolicitudes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Direccion"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Lista Solicitudes"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolFechaNac"
-         />
-
-    <TextView
-        android:id="@+id/textViewSolTipoCarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Tipo de Carga"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSolDireccion"/>
-      <!---  app:layout_constraintTop_toBottomOf="@+id/textViewSolDireccion" /> -->
-
-    <TextView
-        android:id="@+id/textViewSolPeso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Peso de la carga"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSolTipoCarga" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetalledeCarga" />
+    <!---  app:layout_constraintTop_toBottomOf="@+id/textViewSolDireccion" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
